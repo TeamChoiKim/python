@@ -1,7 +1,7 @@
 import { Command } from 'commander';
 import { list, addWord, deleteWord, modifyWord } from './cmd.js';
 
-console.log("단어장")
+console.log("-단어장-")
 
 const program = new Command();
 
