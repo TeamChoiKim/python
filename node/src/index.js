@@ -15,18 +15,18 @@ program.command('list')
     .action(list);
 
 program.command('del')
-    .argument('<word>')
+    .argument('<key>')
     .description('단어 삭제')
-    .action((word) => {
-        del(word)
+    .action((key) => {
+        del(key)
     });
 
-program.command('edt')
-    .argument('<word>')
+program.command('edit')
+    .argument('<key>')
     .argument('<edtWord>')
     .description('단어 수정')
-    .action((word, edtWord) => {
-        edt(word, edtWord)
+    .action((key, edtWord) => {
+        edt(key, edtWord)
     });
 
 program.parse(process.argv);
