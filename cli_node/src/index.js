@@ -13,7 +13,7 @@ program
 
 program
     .command('del')
-    .argument('<word>')
+    .argument('<id>')
     .description('지우기')
     .action(del);
 
