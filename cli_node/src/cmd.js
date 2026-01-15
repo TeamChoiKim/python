@@ -6,7 +6,7 @@ const getData = () => {
 }
 
 export const list = () => {
-    console.log("단어장 호출 실행")
+    console.log("단어장 리스트 출력")
     const arr = getData().list;
     for (const v of arr) {
         console.log(v);
@@ -33,6 +33,12 @@ export const deleteWord = a => {
     console.log("단어 삭제 실행")
     const deleteWord = a;       // 삭제할 단어
     const list = getData();
+    if (!list.list.includes(deleteWord)) {
+        console.log(`${deleteWord}(이)가 단어장에 존재하지 않습니다.`)
+        console.log(`단어 변경 취소 : ${deleteWord} => 삭제할 단어 없음`)
+        console.log(`단어장 : ${list.list}`)
+        return
+    }
     const updateList = list.list.filter(v => v !== deleteWord)
     list.list = updateList;
     fs.writeFileSync('./data/words.json', JSON.stringify(list), 'utf-8');
@@ -57,14 +63,14 @@ export const modifyWord = (a, b) => {
         console.log(`단어장 : ${list.list}`)
         return
     }
-const updateList = list.list.map((v) => {
-    if (v === findWord) {
-        return changeWord
-    }
-    else return v
-})
-list.list = updateList;
-fs.writeFileSync('./data/words.json', JSON.stringify(list), 'utf-8');
-console.log(`단어 수정 완료 : ${findWord} => ${changeWord}`)
-console.log(`단어장 : ${list.list}`)
+    const updateList = list.list.map((v) => {
+        if (v === findWord) {
+            return changeWord
+        }
+        else return v
+    })
+    list.list = updateList;
+    fs.writeFileSync('./data/words.json', JSON.stringify(list), 'utf-8');
+    console.log(`단어 수정 완료 : ${findWord} => ${changeWord}`)
+    console.log(`단어장 : ${list.list}`)
 }
