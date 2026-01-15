@@ -8,13 +8,13 @@ const getData = () => {
 }
 
 
+
 export const add = (word) => {
     const data = getData()
     const list = data.wordList
+    const key = (list.length === 0 ? 1 : Number(Object.keys(list.at(-1))) + 1)
+    list.push({ [key]: word })
 
-    list.push(word)
-
-    console.log(data)
     const f = fs.writeFileSync('./data/word.json', JSON.stringify(data), 'utf-8')
 
 }
@@ -24,20 +24,22 @@ export const list = () => {
     return data.wordList.map((v) => console.log(v))
 }
 
-export const del = (word) => {
+export const del = (key) => {
     const data = getData();
     let list = data.wordList;
-    list = list.filter((v, i) => i !== list.indexOf(word))
+    list = list.filter((v) => Number(Object.keys(v)) !== Number(key))
     const delData = { ...data, wordList: list }
     const f = fs.writeFileSync('./data/word.json', JSON.stringify(delData), 'utf-8')
 }
 
-export const edt = (word, edtWord) => {
+export const edt = (key, edtWord) => {
     const data = getData();
-    let list = data.wordList;
-    // if (list.includes(word)) {
-    list[list.indexOf(word)] = edtWord
-    // }
-    const editData = { ...data, wordList: list }
+    const list = data.wordList;
+
+    const arrList = list.map((v) => Number(Object.keys(v)) === Number(key) ? { [key]: edtWord } : v)
+
+    console.log(arrList)
+
+    const editData = { ...data, wordList: [...arrList] }
     const f = fs.writeFileSync('./data/word.json', JSON.stringify(editData), 'utf-8')
 }
