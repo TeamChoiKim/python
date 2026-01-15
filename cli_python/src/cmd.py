@@ -7,7 +7,7 @@ def getData():
 
 
 def wordList():
-    print("단어장 리스트 출력")
+    print("단어장 전체 리스트 출력")
     data = getData()
     for v in data["list"]:
         print(v)

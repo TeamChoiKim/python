@@ -1,7 +1,7 @@
 import argparse
 from cmd import wordList, addWord, deleteWord, modifyWord
 
-print("단어장")
+print("-단어장-")
 
 parser = argparse.ArgumentParser(description="CLI 프로그램")
 subparsers = parser.add_subparsers(dest="command")
