@@ -1,7 +1,7 @@
 console.log('자바스크립트')
 
 import { Command } from 'commander'
-import { add, list, del, update } from './cmd.js'
+import { add, list, del, edit } from './cmd.js'
 
 const program = new Command();
 
@@ -18,11 +18,11 @@ program
     .action(del);
 
 program
-    .command('update')
-    .argument('<word>')
+    .command('edit')
+    .argument('<id>')
     .argument('<editWord>')
     .description('수정하기')
-    .action(update);
+    .action(edit);
 
 program
     .command('list')

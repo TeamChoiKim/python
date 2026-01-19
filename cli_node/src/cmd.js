@@ -30,12 +30,13 @@ export const del = (id) => {
 }
 
 
-export const update = (word, editWord) => {
+export const edit = (id, editWord) => {
     const data = getData()
     const arr = data.list
-    if (arr.includes(word))
-        arr[arr.indexOf(word)] = editWord
-    const editData = { ...data, list: arr }
-    fs.writeFileSync('./data/memo.json', JSON.stringify(editData), 'utf-8')
-    console.log(editData)
+    const arrList = arr.map((v) => Number(Object.keys(v)) === Number(id) ? { [id]: editWord } : v)
+        if (arr.id === Number(id))
+            arr[arr.indexOf(Number(id))] = { "id": id, "word": editWord }
+        const editData = { ...data, list: arrList }
+        fs.writeFileSync('./data/memo.json', JSON.stringify(editData), 'utf-8')
+        console.log(editData)
 }
